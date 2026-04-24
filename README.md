@@ -214,4 +214,27 @@ The advisory updates to reflect empirical quality data rather than just guidelin
 
 ## Status
 
-Planning phase. Starting with Stage 1: install the Skill Prompt Reminder and seed the watchlist with known repeat patterns before any automation is built.
+**Stage 1 — in progress.** The Skill Prompt Reminder is implemented and the watchlist is seeded. No hooks, no automation, no shared repo yet.
+
+## Installing Stage 1 (single engineer, one machine)
+
+1. Clone this repo.
+2. Copy the skill into your Claude Code skills directory:
+
+   ```sh
+   mkdir -p ~/.claude/skills
+   cp -r .claude/skills/skill-prompt-reminder ~/.claude/skills/
+   ```
+
+   Or, to scope it to a single project, leave `.claude/skills/skill-prompt-reminder/` in that project's root.
+
+3. Choose where candidates land. By default they go to `~/.skill-harvest/staging/candidates/`. To point somewhere else (e.g. a clone of this repo), export:
+
+   ```sh
+   export SKILL_HARVEST_STAGING="$HOME/src/skill-swindler/staging/candidates"
+   ```
+
+4. Copy `watchlist.yml` to `~/.skill-harvest/watchlist.yml` (or keep it at the repo root — the skill checks both).
+5. Read `ADVISORY.md` once so you know the quality bar.
+
+That's it. At the end of sessions involving multi-step work, Claude will ask once whether to extract a candidate. Say yes and a file lands in your staging folder. Review it when you have a moment; promote, hold, or discard per the advisory.
