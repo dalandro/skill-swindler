@@ -2,7 +2,6 @@
 slug: <short-slug>
 date: YYYY-MM-DD
 engineer: <name>
-source: skill-prompt-reminder | manual
 watchlist_match: <key from watchlist.yml, or "none">
 ---
 

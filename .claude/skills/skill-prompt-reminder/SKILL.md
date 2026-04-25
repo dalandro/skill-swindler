@@ -44,7 +44,6 @@ Use this shape:
 slug: <short-slug>
 date: YYYY-MM-DD
 engineer: <git config user.name, or "unknown">
-source: skill-prompt-reminder
 watchlist_match: <matching watchlist key, or "none">
 ---
 
