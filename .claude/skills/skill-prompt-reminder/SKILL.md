@@ -48,7 +48,10 @@ engineer: <git config user.name, or "unknown">
 # <One-line description of the pattern>
 
 ## What was done
-<2–4 bullet points: the direct sequence of actions that produced the outcome. No conversation, no dead ends.>
+The direct sequence of actions that produced the outcome — as many bullets as the pattern needs, no more. No conversation, no dead ends.
+- <action>
+- <action>
+- ...
 
 ## Why it might recur
 <1–2 sentences on what makes this likely to come up again.>
