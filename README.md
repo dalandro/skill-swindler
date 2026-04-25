@@ -214,18 +214,20 @@ The advisory updates to reflect empirical quality data rather than just guidelin
 
 ## Status
 
-**Stage 1 — in progress.** The Skill Prompt Reminder is implemented and the watchlist is seeded. No hooks, no automation, no shared repo yet.
+**Stage 1 — in progress.** The Skill Prompt Reminder is implemented. No hooks, no automation, no shared repo yet.
 
 ## Installing Stage 1 (single engineer, one machine)
 
-1. Clone this repo.
-2. Copy the skill into your Claude Code skills directory:
+One-liner:
 
-   ```sh
-   mkdir -p ~/.claude/skills
-   cp -r .claude/skills/skill-prompt-reminder ~/.claude/skills/
-   ```
+```sh
+curl -fsSL https://raw.githubusercontent.com/dalandro/skill-swindler/main/install.sh | bash
+```
 
-3. Read `ADVISORY.md` once so you know the quality bar.
+Or inspect the script before running it:
 
-That's it. Candidates land in `~/.skill-harvest/staging/candidates/` (the skill creates it on first write). At the end of sessions involving multi-step work, Claude will ask once whether to extract a candidate. Say yes and a file lands in your staging folder. Review it when you have a moment; promote, hold, or discard per the advisory.
+```sh
+curl -fsSL https://raw.githubusercontent.com/dalandro/skill-swindler/main/install.sh
+```
+
+Then read `ADVISORY.md` once so you know the quality bar. Candidates land in `~/.skill-harvest/staging/candidates/` (the skill creates the directory on first write). At the end of sessions involving multi-step work, Claude will ask once whether to extract a candidate. Say yes and a file lands in your staging folder; review it later per the advisory.
