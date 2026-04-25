@@ -2,7 +2,6 @@
 slug: <short-slug>
 date: YYYY-MM-DD
 engineer: <name>
-watchlist_match: <key from watchlist.yml, or "none">
 ---
 
 # <One-line description of the pattern>

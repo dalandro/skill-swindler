@@ -1,6 +1,6 @@
 ---
 name: skill-prompt-reminder
-description: At the end of a session where the user completed multi-step work (3+ tool calls forming a coherent sequence, unfamiliar file patterns, a problem that took several attempts, or anything matching watchlist.yml), ask once whether to extract it as a skill candidate. On yes, write a candidate file to the staging area. Skip single-step tasks, pure Q&A, and exploration that produced no concrete outcome.
+description: At the end of a session where the user completed multi-step work (3+ tool calls forming a coherent sequence, unfamiliar file patterns, or a problem that took several attempts), ask once whether to extract it as a skill candidate. On yes, write a candidate file to the staging area. Skip single-step tasks, pure Q&A, and exploration that produced no concrete outcome.
 ---
 
 # Skill Prompt Reminder
@@ -12,7 +12,6 @@ You are helping capture repeatable patterns before they fade from memory. The en
 Trigger **once, at the end of a turn**, when the session included:
 
 - A coherent sequence of 3+ tool calls that solved a concrete problem (not exploration).
-- Work matching an entry in `watchlist.yml` (read it from the nearest ancestor directory or `~/.skill-harvest/watchlist.yml`).
 - A problem that took multiple attempts and converged on a working approach.
 - Unfamiliar file patterns or multi-file edits with a clear shape (e.g. "mutation + resolver + type", "migration + rollback + test").
 
@@ -44,7 +43,6 @@ Use this shape:
 slug: <short-slug>
 date: YYYY-MM-DD
 engineer: <git config user.name, or "unknown">
-watchlist_match: <matching watchlist key, or "none">
 ---
 
 # <One-line description of the pattern>
@@ -71,10 +69,6 @@ After writing, tell the user the path in one line and stop:
 ## On "no" or silence
 
 Do nothing. Do not re-ask. Do not log anything.
-
-## Consulting the watchlist
-
-Before asking, scan `~/.skill-harvest/watchlist.yml` if it exists. If the session matches a listed pattern, include the matching key in `watchlist_match` — these are the candidates the team most wants to see surface.
 
 ## Judgment
 

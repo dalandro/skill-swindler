@@ -176,7 +176,7 @@ This stage is just one person, one machine, one folder. No automation. No hooks.
 
 **Goal:** remove the need to remember to extract manually.
 
-Add the post-session hook. The extractor agent now runs automatically after every session, writing pattern candidates to the local staging area without prompting. The Skill Prompt Reminder continues to run alongside it for high-confidence, in-context extractions.
+Add the post-session hook. The extractor agent now runs automatically after every session, writing pattern candidates to the local staging area without prompting. The Skill Prompt Reminder continues to run alongside it for high-confidence, in-context extractions. The watchlist arrives at this stage too — the automated extractor needs something to bias toward, where the prompt-reminder relied on a human in context.
 
 Still one engineer, one machine. The difference is that the system is now watching passively rather than depending on you to notice.
 
@@ -226,13 +226,6 @@ The advisory updates to reflect empirical quality data rather than just guidelin
    cp -r .claude/skills/skill-prompt-reminder ~/.claude/skills/
    ```
 
-3. Copy the watchlist into place:
-
-   ```sh
-   mkdir -p ~/.skill-harvest
-   cp watchlist.yml ~/.skill-harvest/watchlist.yml
-   ```
-
-4. Read `ADVISORY.md` once so you know the quality bar.
+3. Read `ADVISORY.md` once so you know the quality bar.
 
 That's it. Candidates land in `~/.skill-harvest/staging/candidates/` (the skill creates it on first write). At the end of sessions involving multi-step work, Claude will ask once whether to extract a candidate. Say yes and a file lands in your staging folder. Review it when you have a moment; promote, hold, or discard per the advisory.
