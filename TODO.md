@@ -8,23 +8,15 @@ Planned work not yet built. The README describes what exists today; this file de
 
 The system is designed to be built incrementally. Each stage works on its own. Later stages add capability without breaking what came before. Stage 1 ships in the README; the rest are below.
 
-### Stage 2 — Single machine, automated capture
-
-**Goal:** remove the need to remember to extract manually.
-
-Add the post-session hook. The extractor agent runs automatically after every session, writing pattern candidates to the local staging area without prompting. The Skill Prompt Reminder continues to run alongside it for high-confidence, in-context extractions. The watchlist arrives at this stage too — the automated extractor needs something to bias toward, where the prompt-reminder relied on a human in context.
-
-Still one engineer, one machine. The difference is that the system is now watching passively rather than depending on you to notice.
-
-### Stage 3 — Shared repo, manual sync
+### Stage 2 — Shared repo, manual sync
 
 **Goal:** get a second engineer using the same skills.
 
-Create the shared GitHub repository. Push your local staging area and live skills to it. Other engineers clone it and install the hook pointing to their own local staging folder. Each person manually opens a PR when they want to contribute candidates.
+Create the shared GitHub repository. Push your local staging area and live skills to it. Other engineers install the prompt-reminder skill and point it at their own local staging folder. Each person manually opens a PR when they want to contribute candidates.
 
 No aggregator yet. No automated promotion. Just a shared place where the team can see each other's candidates and pull live skills. This is enough to validate whether the patterns actually transfer between engineers.
 
-### Stage 4 — Automated aggregation and promotion
+### Stage 3 — Automated aggregation and promotion
 
 **Goal:** close the loop so the system can promote patterns without human coordination.
 
@@ -32,40 +24,46 @@ Add the nightly aggregator agent. It reads candidate files from all connected en
 
 This is where the system starts to feel self-sustaining.
 
-### Stage 5 — Feedback loop and quality scoring
+### Stage 4 — Feedback loop and quality scoring
 
 **Goal:** have the system learn which skills are actually being used and which are dead weight.
 
 Track skill usage through session hooks. Skills that are called frequently and whose outputs are accepted without correction score high. Skills that are rarely triggered or whose suggestions are frequently overridden score low and are flagged for review or retirement.
 
-The advisory updates to reflect empirical quality data rather than just guidelines. The watchlist can be pruned based on which seeded patterns have produced useful live skills and which have not.
+The advisory updates to reflect empirical quality data rather than just guidelines.
+
+---
+
+## Optional extension — automatic post-session capture (any time)
+
+**Goal:** capture candidates from sessions where the prompt-reminder didn't fire.
+
+Today the system relies on Claude noticing a repeatable pattern mid-session and asking the user. That's high-quality (a human says yes in context) but it depends on the in-session heuristic firing. A passive post-session hook could pick up patterns the prompt-reminder missed.
+
+Shape: a Claude Code post-session hook fires when a session ends, sends the transcript to an extractor agent, and the agent writes pattern candidates to the local staging area without prompting.
+
+This is decoupled from the staged roadmap on purpose. Try it once you've spent time with Stage 1 candidates and have a feel for whether silent automated capture is worth the noise.
+
+**Design tensions to resolve before building it:**
+
+- The auto-extractor and the prompt-reminder both see the same sessions. Without dedup, you get duplicate candidates for the same pattern in the same session.
+- Auto-extracted candidates are lower quality (no human gate) than prompt-reminder ones. The candidate frontmatter would need a `source:` field (`prompt-reminder` vs `extractor`) so the Stage 3 aggregator can weight provenance.
+- The extractor benefits from a watchlist (a seeded file of known repeat patterns it should bias toward). The prompt-reminder doesn't need one — the human is the watchlist. So the watchlist arrives with this extension, not before.
+
+**Components this extension would add:**
+
+- **Session hook.** A Claude Code post-session hook that triggers when a session ends and sends the transcript to the extractor.
+- **Extractor agent.** A Claude agent with a focused prompt: strip out conversation noise, dead ends, and one-off questions; identify direct sequences of actions that solved a concrete problem; write candidates to staging.
+- **Manual watchlist.** A seeded file (`watchlist.yml`) listing known repeat patterns the extractor should actively look out for. Examples of seeds: feature configuration setting, GraphQL field creation, package upgrade sequence, database migration, API endpoint scaffolding, deployment env var changes.
 
 ---
 
 ## Components to build
 
-### Session hook (Stage 2)
-A Claude Code post-session hook that triggers automatically when a session ends. Sends the session transcript to an extractor agent.
+### Shared staging repo (Stage 2)
+A shared GitHub repository where candidate patterns accumulate across engineers. Each candidate carries the pattern itself, source sessions, contributing engineers, frequency count, and timestamps.
 
-### Extractor agent (Stage 2)
-A Claude agent with a focused prompt: strip out conversation noise, dead ends, and one-off questions. Identify direct sequences of actions — CLI commands, file edits, tool calls — that solved a concrete problem. Write these as candidate patterns to the local staging area.
-
-### Manual watchlist (Stage 2)
-A seeded file (`watchlist.yml`) listing known repeat patterns the extractor should actively look out for. Primes the automated system before it has enough session history to find patterns on its own. Examples of seeds:
-
-- Feature configuration setting
-- GraphQL field creation (mutation + resolver + type)
-- Package upgrade sequence (lockfile + tests)
-- Database migration generation and rollback
-- API endpoint scaffolding
-- Deployment environment variable changes
-
-The watchlist is maintained by the team and grows as new repeat patterns are identified. Patterns that surface repeatedly through the prompt reminder are strong candidates for seeding.
-
-### Shared staging repo (Stage 3)
-A shared GitHub repository where candidate patterns accumulate across engineers. Each candidate carries the pattern itself, source sessions, contributing engineers, frequency count, and timestamps of first and most recent occurrence.
-
-### Aggregator agent (Stage 4)
+### Aggregator agent (Stage 3)
 Reads candidate files from all connected engineers, clusters similar patterns, and opens a summary PR when patterns cross the promotion threshold.
 
 ---
@@ -88,11 +86,11 @@ Session data from Claude Code interactions is significantly richer than scraping
 
 Git history scraping is a useful secondary signal (and can bootstrap the watchlist with patterns that are already in the codebase) but it is a different and lower quality data source than live session capture.
 
-The hard problem is filtering. Raw session transcripts contain a lot of noise: exploratory questions, false starts, conversation, debugging tangents. The extractor agent's job is to collapse these into direct action sequences — the minimum set of steps that would reproduce the outcome.
+The hard problem for any automated extractor is filtering. Raw session transcripts contain a lot of noise: exploratory questions, false starts, conversation, debugging tangents. The extractor agent's job is to collapse these into direct action sequences — the minimum set of steps that would reproduce the outcome.
 
-### Team setup (Stage 3+)
+### Team setup (Stage 2+)
 
-Each engineer installs the session hook locally. All hooks point to the shared staging repo. The aggregator runs nightly and opens a summary PR when new candidates cross the threshold.
+Each engineer installs the prompt-reminder skill locally. At Stage 2, candidates are pushed to a shared repo by hand. At Stage 3, an aggregator runs nightly and opens a summary PR when new candidates cross the threshold.
 
 **Threshold for promotion to candidate:** pattern appears in 3+ sessions across 2+ engineers.
 
@@ -105,4 +103,4 @@ Engineers on the team:
 - Ravi — GraphQL fields
 - Marcus — package upgrades
 
-These overlapping domains are exactly the areas the watchlist should seed first.
+These overlapping domains are exactly the areas the watchlist should seed first if and when the optional auto-extractor is built.

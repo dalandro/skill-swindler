@@ -2,7 +2,7 @@
 
 A Claude Code skill that asks once at the end of multi-step sessions whether the work felt repeatable, and writes a candidate file describing the pattern to a local folder if you say yes. The candidates are reviewed later — they are not themselves skills.
 
-This is the first stage of a longer project — a passive background system that watches Claude Code sessions across a team of engineers, extracts repeatable patterns, and promotes them into shared, reusable skills. See `TODO.md` for the planned roadmap.
+This is the first stage of a longer project — a system for surfacing repeatable patterns across a team of engineers and promoting them into shared, reusable skills. See `TODO.md` for the planned roadmap.
 
 ---
 
