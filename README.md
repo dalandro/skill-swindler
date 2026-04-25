@@ -226,15 +226,13 @@ The advisory updates to reflect empirical quality data rather than just guidelin
    cp -r .claude/skills/skill-prompt-reminder ~/.claude/skills/
    ```
 
-   Or, to scope it to a single project, leave `.claude/skills/skill-prompt-reminder/` in that project's root.
-
-3. Choose where candidates land. By default they go to `~/.skill-harvest/staging/candidates/`. To point somewhere else (e.g. a clone of this repo), export:
+3. Copy the watchlist into place:
 
    ```sh
-   export SKILL_HARVEST_STAGING="$HOME/src/skill-swindler/staging/candidates"
+   mkdir -p ~/.skill-harvest
+   cp watchlist.yml ~/.skill-harvest/watchlist.yml
    ```
 
-4. Copy `watchlist.yml` to `~/.skill-harvest/watchlist.yml` (or keep it at the repo root — the skill checks both).
-5. Read `ADVISORY.md` once so you know the quality bar.
+4. Read `ADVISORY.md` once so you know the quality bar.
 
-That's it. At the end of sessions involving multi-step work, Claude will ask once whether to extract a candidate. Say yes and a file lands in your staging folder. Review it when you have a moment; promote, hold, or discard per the advisory.
+That's it. Candidates land in `~/.skill-harvest/staging/candidates/` (the skill creates it on first write). At the end of sessions involving multi-step work, Claude will ask once whether to extract a candidate. Say yes and a file lands in your staging folder. Review it when you have a moment; promote, hold, or discard per the advisory.

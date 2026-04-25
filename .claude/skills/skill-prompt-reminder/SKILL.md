@@ -33,15 +33,11 @@ Do not elaborate, do not list what you noticed, do not offer alternatives. One l
 
 ## On "yes"
 
-Write a candidate file to the staging area. Resolve the path in this order:
-
-1. `$SKILL_HARVEST_STAGING` environment variable if set.
-2. `./staging/candidates/` if it exists in the current working directory.
-3. `~/.skill-harvest/staging/candidates/` (create it if missing).
+Write a candidate file to `~/.skill-harvest/staging/candidates/` (create the directory if it does not exist).
 
 Filename: `YYYY-MM-DD-<short-slug>.md` using today's date and a 2–4 word slug derived from what was done.
 
-Use the template at `staging/candidates/TEMPLATE.md` if present, otherwise this shape:
+Use this shape:
 
 ```markdown
 ---
@@ -79,7 +75,7 @@ Do nothing. Do not re-ask. Do not log anything.
 
 ## Consulting the watchlist
 
-Before asking, scan `watchlist.yml` if reachable. If the session matches a listed pattern, include the matching key in `watchlist_match` — these are the candidates the team most wants to see surface.
+Before asking, scan `~/.skill-harvest/watchlist.yml` if it exists. If the session matches a listed pattern, include the matching key in `watchlist_match` — these are the candidates the team most wants to see surface.
 
 ## Judgment
 
