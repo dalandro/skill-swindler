@@ -53,8 +53,8 @@ The direct sequence of actions that produced the outcome — as many bullets as 
 - <action>
 - ...
 
-## Why it might recur
-<1–2 sentences on what makes this likely to come up again.>
+## Shape
+<1–2 sentences describing the kind of work this was, generic enough that a reviewer can compare it against other candidates. Don't predict whether it will recur — that's detected later by similar candidates piling up.>
 
 ## Inputs / triggers
 <What kicked this off — a command, a file, a request shape.>

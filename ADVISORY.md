@@ -32,8 +32,8 @@ detected later, by the same shape stacking up in the staging pile.
 
 ## How to annotate a candidate
 
-When you review a candidate in `staging/candidates/`, add a short block at the
-bottom labelled `## Review`. Keep it tight:
+When you review a candidate in `~/.skill-swindler/staging/candidates/`, add a
+short block at the bottom labelled `## Review`. Keep it tight:
 
 ```markdown
 ## Review
@@ -42,7 +42,7 @@ bottom labelled `## Review`. Keep it tight:
 - notes: <one or two sentences>
 ```
 
-- **promote** — this should become a live skill; open a PR moving it under `skills/live/`.
+- **promote** — this should become a live skill; open a PR moving it under `skills/live/` (directory will exist once the first candidate is promoted).
 - **hold** — good pattern but needs more occurrences before it justifies a skill.
 - **discard** — noise, duplicate, or the pattern has drifted.
 
@@ -68,7 +68,7 @@ be a one-off.
 
 ## Quality bar for promotion to live skill
 
-Do not promote a candidate to `skills/live/` unless **all** of these hold:
+Do not promote a candidate to `skills/live/` (the future home for graduated skills) unless **all** of these hold:
 
 1. It has appeared in **3+ sessions across 2+ engineers** (Stage 4 will enforce
    this automatically; until then, check by hand).

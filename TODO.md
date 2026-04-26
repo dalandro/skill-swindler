@@ -12,7 +12,7 @@ The system is designed to be built incrementally. Each stage works on its own. L
 
 **Goal:** get a second engineer using the same skills.
 
-Create the shared GitHub repository. Push your local staging area and live skills to it. Other engineers install the prompt-reminder skill and point it at their own local staging folder. Each person manually opens a PR when they want to contribute candidates.
+Create the shared GitHub repository. Push your local staging area and live skills to it. Other engineers install the skill-swindler skill and point it at their own local staging folder. Each person manually opens a PR when they want to contribute candidates.
 
 No aggregator yet. No automated promotion. Just a shared place where the team can see each other's candidates and pull live skills. This is enough to validate whether the patterns actually transfer between engineers.
 
@@ -36,9 +36,9 @@ The advisory updates to reflect empirical quality data rather than just guidelin
 
 ## Optional extension — automatic post-session capture (any time)
 
-**Goal:** capture candidates from sessions where the prompt-reminder didn't fire.
+**Goal:** capture candidates from sessions where skill-swindler didn't fire.
 
-Today the system relies on Claude noticing a repeatable pattern mid-session and asking the user. That's high-quality (a human says yes in context) but it depends on the in-session heuristic firing. A passive post-session hook could pick up patterns the prompt-reminder missed.
+Today the system relies on Claude noticing a repeatable pattern mid-session and asking the user. That's high-quality (a human says yes in context) but it depends on the in-session heuristic firing. A passive post-session hook could pick up patterns skill-swindler missed.
 
 Shape: a Claude Code post-session hook fires when a session ends, sends the transcript to an extractor agent, and the agent writes pattern candidates to the local staging area without prompting.
 
@@ -46,9 +46,9 @@ This is decoupled from the staged roadmap on purpose. Try it once you've spent t
 
 **Design tensions to resolve before building it:**
 
-- The auto-extractor and the prompt-reminder both see the same sessions. Without dedup, you get duplicate candidates for the same pattern in the same session.
-- Auto-extracted candidates are lower quality (no human gate) than prompt-reminder ones. The candidate frontmatter would need a `source:` field (`prompt-reminder` vs `extractor`) so the Stage 3 aggregator can weight provenance.
-- The extractor benefits from a watchlist (a seeded file of known repeat patterns it should bias toward). The prompt-reminder doesn't need one — the human is the watchlist. So the watchlist arrives with this extension, not before.
+- The auto-extractor and skill-swindler both see the same sessions. Without dedup, you get duplicate candidates for the same pattern in the same session.
+- Auto-extracted candidates are lower quality (no human gate) than skill-swindler ones. The candidate frontmatter would need a `source:` field (`skill-swindler` vs `extractor`) so the Stage 3 aggregator can weight provenance.
+- The extractor benefits from a watchlist (a seeded file of known repeat patterns it should bias toward). Skill-swindler doesn't need one — the human is the watchlist. So the watchlist arrives with this extension, not before.
 
 **Components this extension would add:**
 
@@ -76,7 +76,7 @@ Reads candidate files from all connected engineers, clusters similar patterns, a
 
 ## Possible rename — skill itself to `skill-harvest`
 
-Today the only installed skill is named `skill-swindler`, matching the project. As more components land (auto-extractor, aggregator, watchlist tooling), `skill-swindler` is better suited as the umbrella project name and each component should get its own name. The current in-session prompt-reminder skill would likely be renamed to `skill-harvest` to reflect its specific role (gathering candidate patterns) and to leave room for sibling skills under the same project.
+Today the only installed skill is named `skill-swindler`, matching the project. As more components land (auto-extractor, aggregator, watchlist tooling), `skill-swindler` is better suited as the umbrella project name and each component should get its own name. The current in-session skill would likely be renamed to `skill-harvest` to reflect its specific role (gathering candidate patterns) and to leave room for sibling skills under the same project.
 
 Defer until there are actually multiple components — renaming once is cheaper than renaming twice.
 
@@ -98,7 +98,7 @@ The hard problem for any automated extractor is filtering. Raw session transcrip
 
 ### Team setup (Stage 2+)
 
-Each engineer installs the prompt-reminder skill locally. At Stage 2, candidates are pushed to a shared repo by hand. At Stage 3, an aggregator runs nightly and opens a summary PR when new candidates cross the threshold.
+Each engineer installs the skill-swindler skill locally. At Stage 2, candidates are pushed to a shared repo by hand. At Stage 3, an aggregator runs nightly and opens a summary PR when new candidates cross the threshold.
 
 **Threshold for promotion to candidate:** pattern appears in 3+ sessions across 2+ engineers.
 
