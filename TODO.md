@@ -74,6 +74,14 @@ Reads candidate files from all connected engineers, clusters similar patterns, a
 
 ---
 
+## Possible rename — skill itself to `skill-harvest`
+
+Today the only installed skill is named `skill-swindler`, matching the project. As more components land (auto-extractor, aggregator, watchlist tooling), `skill-swindler` is better suited as the umbrella project name and each component should get its own name. The current in-session prompt-reminder skill would likely be renamed to `skill-harvest` to reflect its specific role (gathering candidate patterns) and to leave room for sibling skills under the same project.
+
+Defer until there are actually multiple components — renaming once is cheaper than renaming twice.
+
+---
+
 ## Design notes
 
 ### Data quality
