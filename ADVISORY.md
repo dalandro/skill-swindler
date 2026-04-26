@@ -8,19 +8,22 @@ and where the quality bar sits. Update it as the team learns what works.
 ## What makes a good candidate
 
 A good candidate describes **a direct sequence of actions that solved a concrete
-problem** and is **likely to recur**. If a future engineer read it cold, they
-should be able to reproduce the outcome without re-deriving the approach.
+problem** and has **a shape that could recur**. If a future engineer read it
+cold, they should be able to reproduce the outcome without re-deriving the
+approach.
+
+A single occurrence is enough. Recurrence isn't predicted at write time — it's
+detected later, by the same shape stacking up in the staging pile.
 
 **Strong signals:**
 
-- The same shape of work has happened before, by the same or another engineer.
-- The sequence is stable — the steps don't change much session to session.
+- The sequence is stable — the steps would look the same if redone.
 - The outcome is verifiable (a test passes, a config loads, an endpoint responds).
 - The pattern has clear inputs and a clear stopping point.
 
 **Weak signals / noise:**
 
-- One-off debugging sessions that resolved a unique bug.
+- Unique-shape work — a fix whose steps wouldn't help anyone else.
 - Exploration that produced understanding but no concrete artifact.
 - Work where the "right" approach is still in flux.
 - Conversational turns with no tool calls.
