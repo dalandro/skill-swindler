@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO="dalandro/skill-swindler"
 BRANCH="main"
-SKILL="skill-prompt-reminder"
+SKILL="skill-swindler"
 DEST="$HOME/.claude/skills/$SKILL"
 
 mkdir -p "$DEST"

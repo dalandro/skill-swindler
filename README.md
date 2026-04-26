@@ -16,7 +16,7 @@ The knowledge exists. It just never crystallises into something the whole team c
 
 ## What it does today
 
-A single Claude Code skill — Skill Prompt Reminder — installed into `~/.claude/skills/`. At the end of sessions involving multi-step work (3+ tool calls forming a coherent sequence, multi-attempt problem-solving, or unfamiliar multi-file edits), Claude asks one question:
+A single Claude Code skill — Skill Swindler — installed into `~/.claude/skills/`. At the end of sessions involving multi-step work (3+ tool calls forming a coherent sequence, multi-attempt problem-solving, or unfamiliar multi-file edits), Claude asks one question:
 
 > That felt like a repeatable pattern. Would you like to extract it as a skill candidate?
 
@@ -28,7 +28,7 @@ One engineer, one machine, one folder. No hooks, no shared repo, no automation. 
 
 ## Repo contents
 
-- `.claude/skills/skill-prompt-reminder/SKILL.md` — the skill
+- `.claude/skills/skill-swindler/SKILL.md` — the skill
 - `staging/candidates/TEMPLATE.md` — the candidate shape (reference)
 - `ADVISORY.md` — quality bar and review conventions
 - `install.sh` — one-liner installer
