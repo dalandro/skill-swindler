@@ -32,7 +32,7 @@ Do not elaborate, do not list what you noticed, do not offer alternatives. One l
 
 ## On "yes"
 
-Write a candidate file to `~/.skill-harvest/staging/candidates/` (create the directory if it does not exist).
+Write a candidate file to `~/.skill-swindler/staging/candidates/` (create the directory if it does not exist).
 
 Filename: `YYYY-MM-DD-<short-slug>.md` using today's date and a 2–4 word slug derived from what was done.
 

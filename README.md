@@ -20,7 +20,7 @@ A single Claude Code skill — Skill Swindler — installed into `~/.claude/skil
 
 > That felt like a repeatable pattern. Would you like to extract it as a skill candidate?
 
-On yes, Claude writes a candidate file to `~/.skill-harvest/staging/candidates/<date>-<slug>.md` using the shape in `staging/candidates/TEMPLATE.md`. On no or silence, Claude does nothing.
+On yes, Claude writes a candidate file to `~/.skill-swindler/staging/candidates/<date>-<slug>.md` using the shape in `staging/candidates/TEMPLATE.md`. On no or silence, Claude does nothing.
 
 One engineer, one machine, one folder. No hooks, no shared repo, no automation. Candidates accumulate locally; review them at your own pace per `ADVISORY.md`.
 
@@ -50,7 +50,7 @@ Or inspect the script before running it:
 curl -fsSL https://raw.githubusercontent.com/dalandro/skill-swindler/main/install.sh
 ```
 
-Then read `ADVISORY.md` once so you know the quality bar. Candidates land in `~/.skill-harvest/staging/candidates/` (the skill creates the directory on first write).
+Then read `ADVISORY.md` once so you know the quality bar. Candidates land in `~/.skill-swindler/staging/candidates/` (the skill creates the directory on first write).
 
 ---
 
