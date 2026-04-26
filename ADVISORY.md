@@ -51,27 +51,11 @@ can disagree. After a week, remove them in a batch.
 
 ---
 
-## How to write a watchlist entry
-
-Add an entry to `watchlist.yml` when you notice a pattern repeating in the wild
-that the automated system should prime on. A good entry is:
-
-- **Specific enough** that the extractor can recognise it (concrete file paths,
-  command shapes, tool sequences).
-- **General enough** that it captures variants, not a single instance.
-- **Owned** — at least one engineer in `seen_by` so there's a human to consult.
-
-Remove entries when the pattern has graduated to a live skill or has proven to
-be a one-off.
-
----
-
 ## Quality bar for promotion to live skill
 
 Do not promote a candidate to `skills/live/` (the future home for graduated skills) unless **all** of these hold:
 
-1. It has appeared in **3+ sessions across 2+ engineers** (Stage 4 will enforce
-   this automatically; until then, check by hand).
+1. It has appeared in **3+ sessions across 2+ engineers** (check by hand).
 2. The action sequence is stable — reviewers agree on what the steps are.
 3. The skill, as written, would have saved real time on the sessions that
    produced it. If it would have produced worse output than the engineer

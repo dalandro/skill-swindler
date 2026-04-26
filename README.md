@@ -20,7 +20,7 @@ A single Claude Code skill — Skill Swindler — installed into `~/.claude/skil
 
 > That felt like a repeatable pattern. Would you like to extract it as a skill candidate?
 
-On yes, Claude writes a candidate file to `~/.skill-swindler/staging/candidates/<date>-<slug>.md` using the shape in `staging/candidates/TEMPLATE.md`. On no or silence, Claude does nothing.
+On yes, Claude writes a candidate file to `~/.skill-swindler/staging/candidates/<date>-<slug>.md` using the shape in `staging/candidates/SKILL.md`. On no or silence, Claude does nothing.
 
 One engineer, one machine, one folder. No hooks, no shared repo, no automation. Candidates accumulate locally; review them at your own pace per `ADVISORY.md`.
 
@@ -29,7 +29,6 @@ One engineer, one machine, one folder. No hooks, no shared repo, no automation. 
 ## Repo contents
 
 - `.claude/skills/skill-swindler/SKILL.md` — the skill
-- `staging/candidates/TEMPLATE.md` — the candidate shape (reference)
 - `ADVISORY.md` — quality bar and review conventions
 - `install.sh` — one-liner installer
 - `TODO.md` — planned stages and deferred work

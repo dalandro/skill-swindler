@@ -71,7 +71,7 @@ After writing, tell the user the path in one line and stop:
 
 ## On "no" or silence
 
-Do nothing. Do not re-ask. Do not log anything.
+Do nothing. Do not re-ask.
 
 ## Judgment
 
