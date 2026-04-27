@@ -60,6 +60,9 @@ This is decoupled from the staged roadmap on purpose. Try it once you've spent t
 
 ## Components to build
 
+### History search tool
+A tool that scans past Claude session transcripts and surfaces skill candidates that were never captured — either because skill-swindler didn't fire or the session predates the skill. Takes the same extraction logic as the auto-extractor but runs on-demand against the full local history rather than hooking into session end.
+
 ### Shared staging repo (Stage 2)
 A shared GitHub repository where candidate patterns accumulate across engineers. Each candidate carries the pattern itself, source sessions, contributing engineers, frequency count, and timestamps.
 
