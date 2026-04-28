@@ -1,6 +1,6 @@
 ---
 name: skill-swindler
-description: At the end of a session where the user completed multi-step work (3+ tool calls forming a coherent sequence, unfamiliar file patterns, or a problem that took several attempts), ask once whether to extract it as a skill candidate. On yes, write a candidate file to the staging area. Skip single-step tasks, pure Q&A, and exploration that produced no concrete outcome.
+description: Extract repeatable patterns as skill candidates after multi-step sessions.
 ---
 
 # Skill Swindler
